@@ -77,10 +77,13 @@ function SideDrawer() {
         },
       };
 
+     
+
       const { data } = await axios.get(`/api/user?search=${search}`, config);
 
       setLoading(false);
       setSearchResult(data);
+      console.log(data)
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -210,7 +213,7 @@ function SideDrawer() {
               searchResult?.map((user) => (
                 <UserListItem
                   key={user._id}
-                  user={user}
+                  user={searchResult}
                   handleFunction={() => accessChat(user._id)}
                 />
               ))

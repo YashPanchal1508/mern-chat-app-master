@@ -2,9 +2,9 @@ import { Avatar } from "@chakra-ui/avatar";
 import { Box, Text } from "@chakra-ui/layout";
 import { ChatState } from "../../Context/ChatProvider";
 
-const UserListItem = ({ handleFunction }) => {
-  const { user } = ChatState();
-
+const UserListItem = ({ handleFunction, user }) => {
+  const { name, email, pic } = user[0]; // Destructure the properties from searchResult object
+ 
   return (
     <Box
       onClick={handleFunction}
@@ -27,14 +27,14 @@ const UserListItem = ({ handleFunction }) => {
         mr={2}
         size="sm"
         cursor="pointer"
-        name={user.name}
-        src={user.pic}
+        name={name} // Use the name property
+        src={pic} // Use the pic property
       />
       <Box>
-        <Text>{user.name}</Text>
+        <Text>{name}</Text> {/* Use the name property */}
         <Text fontSize="xs">
           <b>Email : </b>
-          {user.email}
+          {email} {/* Use the email property */}
         </Text>
       </Box>
     </Box>
