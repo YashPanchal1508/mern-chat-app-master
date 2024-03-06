@@ -6,12 +6,14 @@ import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
+const ENDPOINT = 'https://mern-chat-app-backend-rgba.onrender.com'
 
-const Signup = () => {
+const Signup = ({setActiveTab}) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
   const history = useHistory();
+  
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -51,7 +53,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/user",
+        `${ENDPOINT}/api/user`,
         {
           name,
           email,
@@ -69,8 +71,10 @@ const Signup = () => {
         position: "bottom",
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
+      console.log(data)
       setPicLoading(false);
-      history.push("/chats");
+      // history.push('/chats')
+      setActiveTab(0)
     } catch (error) {
       toast({
         title: "Error Occured!",
