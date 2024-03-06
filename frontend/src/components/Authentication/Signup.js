@@ -75,6 +75,10 @@ const Signup = ({setActiveTab}) => {
       setPicLoading(false);
       // history.push('/chats')
       setActiveTab(0)
+      setName('')
+      setConfirmpassword('')
+      setEmail('')
+      setPassword('')
     } catch (error) {
       toast({
         title: "Error Occured!",
